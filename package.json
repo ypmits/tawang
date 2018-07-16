@@ -1,0 +1,9 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/timstruthoff/arstudio-test.git",
+  "author": "Tim Struthoff <tim.struthoff@gmail.com>",
+  "license": "MIT",
+  "dependencies": {}
+}
