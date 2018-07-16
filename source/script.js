@@ -8,4 +8,6 @@ Scene.root.child('plane0').transform.rotationX = FaceTracking.face(0).cameraTran
 Scene.root.child('plane0').transform.rotationY = FaceTracking.face(0).cameraTransform.rotationY;
 Scene.root.child('plane0').transform.rotationZ = FaceTracking.face(0).cameraTransform.rotationZ.neg();
 
+const TestModule = require('./test-module.js');
+Diagnostics.log(TestModule);
 
