@@ -1,5 +1,5 @@
 {
-  "name": "ARStudio Webpack Starter",
+  "name": "arstudio-webpack-starter",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/timstruthoff/arstudio-webpack-starter.git",
