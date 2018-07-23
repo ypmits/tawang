@@ -3,6 +3,7 @@ const path = require('path');
 
 module.exports = {
     entry: './source/script.js',
+    mode: 'development',
     output: {
         path: path.resolve(__dirname, '../../build'),
         filename: 'main.bundle.js'
