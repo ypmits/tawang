@@ -6,12 +6,15 @@
   "author": "Tim Struthoff <tim.struthoff@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --config ./tools/webpack/webpack.config.js"
+    "build": "webpack --config ./tools/webpack/webpack.config.js",
+    "dev": "node tools/dev-server"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
+    "express": "^4.16.3",
+    "source-map": "^0.7.3",
     "webpack": "^4.16.1",
     "webpack-cli": "^3.0.8",
     "webpack-dev-middleware": "^3.1.3",
