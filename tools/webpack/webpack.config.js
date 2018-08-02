@@ -2,7 +2,7 @@ const webpack = require("webpack");
 const path = require("path");
 
 module.exports = {
-  entry: "./source/script.js",
+  entry: "./src/script.js",
   mode: "production",
   devtool: "source-map",
   output: {
