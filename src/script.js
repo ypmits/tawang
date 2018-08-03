@@ -11,3 +11,5 @@ Scene.root.child('plane0').transform.rotationZ = FaceTracking.face(0).cameraTran
 const TestModule = require('./test-module.js');
 Diagnostics.log(TestModule);
 
+test.test();
+
