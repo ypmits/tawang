@@ -18,6 +18,10 @@ module.exports = {
     Scene: "commonjs Scene"
   },
   plugins: [
-    new ARStudioDevPlugin({options: true})
+    new ARStudioDevPlugin({
+      serverHost: 'sourcemap-parse-api.eu.dev.monkapps.com',
+      postEndPointAddress: 'https://sourcemap-parse-api.eu.dev.monkapps.com/source-map',
+      getEndPointAddress: 'https://sourcemap-parse-api.eu.dev.monkapps.com/source-map/[id]?line=[line]&column=[column]'
+    })
   ]
 };
