@@ -1,5 +1,6 @@
 const webpack = require("webpack");
 const path = require("path");
+const ARStudioDevPlugin = require('./plugin/ARStudioDevPlugin');
 
 module.exports = {
   entry: "./src/script.js",
@@ -15,5 +16,8 @@ module.exports = {
     FaceTracking: "commonjs FaceTracking",
     Reactive: "commonjs Reactive",
     Scene: "commonjs Scene"
-  }
+  },
+  plugins: [
+    new ARStudioDevPlugin({options: true})
+  ]
 };
