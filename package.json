@@ -1,8 +1,8 @@
 {
-  "name": "arstudio-webpack-starter",
-  "version": "1.0.0",
+  "name": "@mediamonks/tawang",
+  "version": "0.0.1",
   "main": "index.js",
-  "repository": "https://github.com/timstruthoff/arstudio-webpack-starter.git",
+  "repository": "https://github.com/mediamonks/tawang.git",
   "author": "Tim Struthoff <tim.struthoff@gmail.com>",
   "license": "MIT",
   "scripts": {
