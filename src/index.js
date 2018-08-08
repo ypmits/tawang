@@ -28,19 +28,22 @@ module.exports = class {
   async handler(compilation) {
     let assets = this.collectAssets(compilation);
 
-    let sourceMapOnServer = await sendSourceMap(assets.sourceMap.sourceContents._value);
-    let wrapper = await textAssembler({
-      id: sourceMapOnServer.id
-    });
-    await concatToFile(compilation, assets.script.sourceName, wrapper.prepend, wrapper.append)
+    // Checking if a sourcemapand a script exists
+    if (assets.sourceMap !== null && assets.script !== null) {
+      let sourceMapOnServer = await sendSourceMap(assets.sourceMap.sourceContents._value);
+      let wrapper = await textAssembler({
+        id: sourceMapOnServer.id
+      });
+      await concatToFile(compilation, assets.script.sourceName, wrapper.prepend, wrapper.append)
+    }
   }
 
   collectAssets(compilation) {
     //console.log(compilation.assets['main.bundle.js'].children[0]);
     // console.log(JSON.stringify(compilation.assets['main.bundle.js'])
 
-    let sourceMap = [];
-    let script = [];
+    let sourceMap = null;
+    let script = null;
 
     Object.entries(compilation.assets).forEach(([sourceName, sourceContents]) => {
       let fileExtension = path.extname(sourceName);
