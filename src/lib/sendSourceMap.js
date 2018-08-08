@@ -1,13 +1,18 @@
 const needle = require('needle');
 
-module.exports = rawSourceMap => {
+module.exports = async rawSourceMap => {
   let data = { map: rawSourceMap };
   let options = { json: true };
 
-  return needle(
+  let response = await needle(
     'post',
     'https://sourcemap-parse-api.eu.dev.monkapps.com/source-map',
     data,
     options,
   );
+  if (response.body) {
+    return response.body;
+  } else {
+    throw 'Invalid JSON in response!';
+  }
 };
