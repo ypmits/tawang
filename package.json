@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "main": "src/index.js",
   "repository": "https://github.com/mediamonks/tawang.git",
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Tim Struthoff <tim.struthoff@gmail.com>",
   "license": "MIT",
   "keywords": [
