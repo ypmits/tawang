@@ -1,7 +1,7 @@
 const path = require('path');
-const sendSourceMap = require('./components/sendSourceMap')
-const textAssembler = require('./components/textAssembler')
-const concatToFile = require('./components/concatToFile')
+const sendSourceMap = require('./lib/sendSourceMap')
+const textAssembler = require('./lib/textAssembler')
+const concatToFile = require('./lib/concatToFile')
 
 module.exports = class {
   constructor(options) {
