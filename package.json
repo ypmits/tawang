@@ -15,7 +15,8 @@
   ],
   "scripts": {
     "build": "webpack --config ./tools/webpack/webpack.config.js",
-    "dev": "node tools/dev-server"
+    "dev": "node tools/dev-server",
+    "test": "echo \"No test!\" && exit 0"
   },
   "dependencies": {
     "needle": "^2.2.1",
