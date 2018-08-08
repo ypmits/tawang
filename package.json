@@ -5,6 +5,14 @@
   "repository": "https://github.com/mediamonks/tawang.git",
   "author": "Tim Struthoff <tim.struthoff@gmail.com>",
   "license": "MIT",
+  "keywords": [
+    "mediamonks",
+    "tawang",
+    "webpack",
+    "webpack-plugin",
+    "arstudio",
+    "facebook"
+  ],
   "scripts": {
     "build": "webpack --config ./tools/webpack/webpack.config.js",
     "dev": "node tools/dev-server"
