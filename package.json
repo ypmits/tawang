@@ -1,7 +1,7 @@
 {
   "name": "@mediamonks/tawang",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": "https://github.com/mediamonks/tawang.git",
   "author": "Tim Struthoff <tim.struthoff@gmail.com>",
   "license": "MIT",
