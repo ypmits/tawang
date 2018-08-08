@@ -1,2 +1,4 @@
 - Write readme
 - Add tests
+- Add rate limiter to client error logging
+- Add rate limiter to api
