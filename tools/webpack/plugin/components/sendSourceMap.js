@@ -1,21 +1,13 @@
-const request = require('request');
+const needle = require('needle');
 
-module.exports = (rawSourceMap) => {
-  return new Promise((resolve, reject) => {
-    request.post(
-      {
-        headers: { 'content-type': 'application/json' },
-        url: 'https://sourcemap-parse-api.eu.dev.monkapps.com/source-map',
-        body: JSON.stringify({ map: rawSourceMap }),
-      },
-      function(error, response, body) {
-        if (error) {
-          reject(error);
-        } else {
-          let bodyObj = JSON.parse(body)
-          resolve(bodyObj);
-        }
-      },
-    );
-  });
-}
+module.exports = rawSourceMap => {
+  let data = { map: map };
+  let options = { json: true };
+
+  return needle(
+    'post',
+    'https://sourcemap-parse-api.eu.dev.monkapps.com/source-map',
+    data,
+    options,
+  );
+};
