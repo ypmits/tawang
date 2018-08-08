@@ -28,7 +28,7 @@ module.exports = class {
   async handler(compilation) {
     let assets = this.collectAssets(compilation);
 
-    // Checking if a sourcemapand a script exists
+    // Checking if a sourcemap and a script exists
     if (assets.sourceMap !== null && assets.script !== null) {
       let sourceMapOnServer = await sendSourceMap(assets.sourceMap.sourceContents._value);
       let wrapper = await textAssembler({
