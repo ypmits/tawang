@@ -1,7 +1,7 @@
 const needle = require('needle');
 
 module.exports = rawSourceMap => {
-  let data = { map: map };
+  let data = { map: rawSourceMap };
   let options = { json: true };
 
   return needle(
