@@ -10,6 +10,7 @@
     "dev": "node tools/dev-server"
   },
   "dependencies": {
-    "needle": "^2.2.1"
+    "needle": "^2.2.1",
+    "webpack-sources": "^1.1.0"
   }
 }
