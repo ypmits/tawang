@@ -3,11 +3,16 @@
   "version": "0.0.4",
   "main": "src/index.js",
   "repository": "https://github.com/mediamonks/tawang.git",
+  "description": "A webpack plugin for Facebook's AR Studio.",
   "publishConfig": {
     "access": "public"
   },
   "author": "Tim Struthoff <tim.struthoff@gmail.com>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mediamonks/tawang/issues"
+  },
+  "homepage": "https://github.com/mediamonks/temple#readme",
   "keywords": [
     "mediamonks",
     "tawang",
