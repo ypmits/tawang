@@ -28,7 +28,7 @@ module.exports = class {
 
   apply(compiler) {
     // Tapping into the compilation process
-    compiler.hooks.afterCompile.tapAsync('ARStudioDevPlugin', (compilation, callback) => {
+    compiler.hooks.afterCompile.tapAsync('Tawang', (compilation, callback) => {
       this.handler(compilation)
         .then(() => {
           callback();
