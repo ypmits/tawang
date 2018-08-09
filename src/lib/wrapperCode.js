@@ -5,10 +5,7 @@ let id = dataObj.id;
 let line = error.line - 3;
 let column = error.column;
 
-const endPointAddress =
-  'https://sourcemap-parse-api.eu.dev.monkapps.com/source-map/[id]?line=[line]&column=[column]';
-
-const url = endPointAddress
+const url = dataObj.getEndPointAddress
   .replace(/\[id\]/i, id)
   .replace(/\[line\]/i, line)
   .replace(/\[column\]/i, column);
@@ -25,5 +22,5 @@ Networking.fetch(url)
     Diagnostics.log(json);
   })
   .catch(function(error) {
-    // Diagnostics.log('There was an issue with fetch operation: ' + error.message);
+    Diagnostics.log('There was an issue with fetch operation: ' + error.message);
   });

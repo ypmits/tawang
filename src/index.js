@@ -1,23 +1,41 @@
 const path = require('path');
-const sendSourceMap = require('./lib/sendSourceMap')
-const textAssembler = require('./lib/textAssembler')
-const concatToFile = require('./lib/concatToFile')
+const Validator = require('./lib/Validator');
+const sendSourceMap = require('./lib/sendSourceMap');
+const textAssembler = require('./lib/textAssembler');
+const concatToFile = require('./lib/concatToFile');
 
 module.exports = class {
   constructor(options) {
-    this.options = options;
+    // Validating and sanitizing the options
+    let validator = new Validator();
+
+    if (typeof options !== 'object') {
+      throw 'Tawang: Please provide an options object!';
+    }
+
+    if (typeof options.serverHost !== 'string') {
+      throw 'Tawang: Please provide a serverHost string in the options object!';
+    }
+
+    let postEndPoint = validator.postEndPoint(options.postEndPoint);
+    let getEndPoint = validator.getEndPoint(options.getEndPoint);
+
+    this.fullPostEndPointAddress = 'https://' + options.serverHost + postEndPoint;
+    this.fullGetEndPointAddress = 'https://' + options.serverHost + getEndPoint;
+
     this.bind();
   }
 
   apply(compiler) {
     // Tapping into the compilation process
     compiler.hooks.afterCompile.tapAsync('ARStudioDevPlugin', (compilation, callback) => {
-      this.handler(compilation).then(() => {
-        callback();
-      }).catch(error => {
-        console.error(error)
-      })
-
+      this.handler(compilation)
+        .then(() => {
+          callback();
+        })
+        .catch(error => {
+          console.error(error);
+        });
     });
   }
 
@@ -30,18 +48,19 @@ module.exports = class {
 
     // Checking if a sourcemap and a script exists
     if (assets.sourceMap !== null && assets.script !== null) {
-      let sourceMapOnServer = await sendSourceMap(assets.sourceMap.sourceContents._value);
+      let sourceMapOnServer = await sendSourceMap(
+        assets.sourceMap.sourceContents._value,
+        this.fullPostEndPointAddress,
+      );
       let wrapper = await textAssembler({
-        id: sourceMapOnServer.id
+        id: sourceMapOnServer.id,
+        getEndPointAddress: this.fullGetEndPointAddress,
       });
-      await concatToFile(compilation, assets.script.sourceName, wrapper.prepend, wrapper.append)
+      await concatToFile(compilation, assets.script.sourceName, wrapper.prepend, wrapper.append);
     }
   }
 
   collectAssets(compilation) {
-    //console.log(compilation.assets['main.bundle.js'].children[0]);
-    // console.log(JSON.stringify(compilation.assets['main.bundle.js'])
-
     let sourceMap = null;
     let script = null;
 
@@ -53,27 +72,17 @@ module.exports = class {
           sourceName,
           sourceContents,
         };
-        /* this.sendSourceMap(sourceContents._value).then(body => {
-            console.log(body)
-            
-          }); */
       } else if (fileExtension === '.js') {
         script = {
           sourceName,
           sourceContents,
         };
-
-        /* compilation.assets[sourceName] = new ConcatSource(
-            '//tesxzxxzt',
-            '\n',
-            compilation.assets[sourceName],
-          ); */
       }
     });
 
     return {
       sourceMap,
-      script
-    }
+      script,
+    };
   }
 };
