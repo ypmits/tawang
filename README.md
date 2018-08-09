@@ -47,13 +47,13 @@ The domain name of the API without the protocol (e.g. “https://”) and with t
 Example: "api.com".
 
 #### `postEndPoint: <String>` (optional)
-The full web address (including https://) of the source map POST endpoint of the API server. This is the address, where the plugin sends the source map during the compilation.
-Example: "’https://api.com/source-map/".
+The address of the source map POST endpoint relative to the serverHost domain. This is the address, where the plugin sends the source map during the compilation.
+Example: "/source-map".
 
 #### `getEndPoint: <String>` (optional)
-The full web address (including https://) of the parsing GET endpoint of the API server. Any errors which occur in the AR Studio script are sent here. The API server then parses the line and column number from the error and returns the code location in the original source.
+The address of the parsing GET endpoint relative to the serverHost domain. Any errors which occur in the AR Studio script are sent here. The API server then parses the line and column number from the error and returns the code location in the original source.
 The URL should include placeholders for the source map id ("[id]"), line number ("[line]"), and column number ("[column]"). You have to enclose all placeholders in square brackets
-Example: "https://api.com/source-map/[id]?line=[line]&column=[column]".
+Example: "/source-map/[id]?line=[line]&column=[column]".
 
 
 ### Example

@@ -1,6 +1,14 @@
+/**
+ * Validates and sanitizes inputs.
+ */
 module.exports = class {
   constructor() {}
 
+  /**
+   * Validates and sanitizes a relative address of the source map POST endpoint.
+   * @param {String} postEndPoint An address or undefined.
+   * @return {String} A valid endpoint address.
+   */
   postEndPoint(postEndPoint) {
     // Cleaning up the postEndPoint option
     let cleanPostEndPoint = postEndPoint;
@@ -16,6 +24,11 @@ module.exports = class {
     return cleanPostEndPoint;
   }
 
+  /**
+   * Validates and sanitizes a relative address of the parsing GET endpoint.
+   * @param {String} getEndPoint An address or undefined.
+   * @return {String} A valid endpoint address.
+   */
   getEndPoint(getEndPoint) {
     // Cleaning up the postEndPoint option
     let cleanGetEndPoint = getEndPoint;
