@@ -8,7 +8,6 @@ const ConcatSource = require('webpack-sources/lib/ConcatSource');
  * @param {{String}} append Text to append to the file.
  */
 module.exports = (compilation, name, prepend, append) => {
-
   // Using a webapck method to concat the strings.
   compilation.assets[name] = new ConcatSource(
     prepend,

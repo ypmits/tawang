@@ -7,13 +7,13 @@ let DATA_OBJECT = JSON.parse(DATA_JSON);
 let dropError = false;
 
 let throttleTime = 1000;
-Time.setInterval(function () {
+Time.setInterval(function() {
   dropError = false;
-}, throttleTime)
+}, throttleTime);
 
 function throttle(func) {
   if (!dropError) {
-    func()
+    func();
     dropError = true;
   }
 }

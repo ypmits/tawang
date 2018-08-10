@@ -1,3 +1,5 @@
 - Add tests
+- Input validation
+- Return errors as JSON
 - Add rate limiter to client error logging
 - Add rate limiter to api

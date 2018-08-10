@@ -12,13 +12,13 @@ module.exports = class {
    * Creates a new webpack plugin.
    * @param {object} options Options passed to the plugin.
    * @param {String} options.serverHost The domain name of the API without the protocol (e.g. “https://”) and with the TLD (e.g. “.com”). Example: "api.com".
-   * @param {String} [options.postEndPoint=/source-map] The address of the source map POST endpoint relative to the serverHost domain.
-   * @param {String} [options.getEndPoint=/source-map/[id]?line=[line]&column=[column]] The address of the parsing GET endpoint relative to the serverHost domain.
+   * @param {String} [options.sourceMapEndpoint=/source-map] The address of the source map POST endpoint relative to the serverHost domain.
+   * @param {String} [options.parseEndpoint=/source-map/[id]?line=[line]&column=[column]] The address of the parsing GET endpoint relative to the serverHost domain.
    */
   constructor(options) {
     // Validating and sanitizing the options
     let validator = new Validator();
-    
+
     if (typeof options !== 'object') {
       throw 'Tawang: Please provide an options object!';
     }
@@ -27,11 +27,11 @@ module.exports = class {
       throw 'Tawang: Please provide a serverHost string in the options object!';
     }
 
-    let postEndPoint = validator.postEndPoint(options.postEndPoint);
-    let getEndPoint = validator.getEndPoint(options.getEndPoint);
+    let sourceMapEndpoint = validator.sourceMapEndpoint(options.sourceMapEndpoint);
+    let parseEndpoint = validator.parseEndpoint(options.parseEndpoint);
 
-    this.fullPostEndPointAddress = 'https://' + options.serverHost + postEndPoint;
-    this.fullGetEndPointAddress = 'https://' + options.serverHost + getEndPoint;
+    this.fullSourceMapEndpointAddress = 'https://' + options.serverHost + sourceMapEndpoint;
+    this.fullParseEndpointAddress = 'https://' + options.serverHost + parseEndpoint;
 
     this.bind();
   }
@@ -74,13 +74,13 @@ module.exports = class {
       // Sending the source map to the API.
       let sourceMapOnServer = await sendSourceMap(
         assets.sourceMap.sourceContents._value,
-        this.fullPostEndPointAddress,
+        this.fullSourceMapEndpointAddress,
       );
 
       // Asembling the wrapper code using the id of the parsed source map on the server.
       let wrapper = await textAssembler({
         id: sourceMapOnServer.id,
-        fullGetEndPointAddress: this.fullGetEndPointAddress,
+        fullParseEndpointAddress: this.fullParseEndpointAddress,
       });
 
       // Concatenating the wrapper code to the script file.

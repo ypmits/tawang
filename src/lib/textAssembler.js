@@ -6,7 +6,7 @@ const numberOfLines = require('./numberOfLines')
  * Assembles the wrapper code which is added to the webpack output.
  * @param {object} options Options passed thorugh to the AR Studio client.
  * @param {String} options.id The id of the source map on the server.
- * @param {String} options.fullGetEndPointAddress The full address of the parse GET endpoint on the API server.
+ * @param {String} options.fullParseEndpointAddress The full address of the parse GET endpoint on the API server.
  */
 module.exports = options => {
 
@@ -19,7 +19,7 @@ module.exports = options => {
     ...options,
     linesOffset: numberOfLines(clientSetupCode) + 2 // Number of lines above webpack output.
   }
-
+  
   // Making the options into JSON.
   let dataJSON = JSON.stringify(data);
 

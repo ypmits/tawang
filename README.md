@@ -31,8 +31,8 @@ module.exports = {
   plugins: [
     new Tawang({
       serverHost: 'api.com',
-      postEndPoint: '/source-map',
-      getEndPoint: '/source-map/[id]?line=[line]&column=[column]'
+      sourceMapEndpoint: '/source-map',
+      parseEndpoint: '/source-map/[id]'
     })
   ]
 }
@@ -46,11 +46,11 @@ You have to pass the following options to the plugin.
 The domain name of the API without the protocol (e.g. “https://”) and with the TLD (e.g. “.com”).
 Example: "api.com".
 
-#### `postEndPoint: <String>` (optional)
+#### `sourceMapEndpoint: <String>` (optional)
 The address of the source map POST endpoint relative to the serverHost domain. This is the address, where the plugin sends the source map during the compilation.
 Example: "/source-map".
 
-#### `getEndPoint: <String>` (optional)
+#### `parseEndpoint: <String>` (optional)
 The address of the parsing GET endpoint relative to the serverHost domain. Any errors which occur in the AR Studio script are sent here. The API server then parses the line and column number from the error and returns the code location in the original source.
 The URL should include placeholders for the source map id ("[id]"), line number ("[line]"), and column number ("[column]"). You have to enclose all placeholders in square brackets
 Example: "/source-map/[id]?line=[line]&column=[column]".
@@ -96,8 +96,8 @@ module.exports = {
   plugins: [
     new Tawang({
       serverHost: 'api.com',
-      postEndPoint: '/source-map',
-      getEndPoint: '/source-map/[id]?line=[line]&column=[column]'
+      sourceMapEndpoint: '/source-map',
+      parseEndpoint: '/source-map/[id]?line=[line]&column=[column]'
     })
   ]
 };
