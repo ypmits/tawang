@@ -4,6 +4,8 @@ const sendSourceMap = require('./lib/sendSourceMap');
 const textAssembler = require('./lib/textAssembler');
 const concatToFile = require('./lib/concatToFile');
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 /**
  * A webpack plugin for Facebook's AR Studio.
  */
