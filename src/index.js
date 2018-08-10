@@ -43,16 +43,46 @@ module.exports = class {
    * @param {object} compiler The webpack compiler.
    */
   apply(compiler) {
-    // Tapping into the compilation process and running plugin logic async.
-    compiler.hooks.afterCompile.tapAsync('Tawang', (compilation, callback) => {
-      this.handler(compilation)
-        .then(() => {
-          callback();
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    });
+    // Gettign mode from config.
+    this.mode = compiler.options.mode;
+
+    // Adding all AR Studio modules to the webpack externals.
+    // This makes webpack bypass the modules without searching
+    // them in the dependencies. The modules are then resolved
+    // by the AR Studio engine.
+    compiler.options.externals = {
+      Animation: 'commonjs Animation',
+      Audio: 'commonjs Audio',
+      CameraInfo: 'commonjs CameraInfo',
+      CameraShare: 'commonjs CameraShare',
+      DeviceMotion: 'commonjs DeviceMotion',
+      Diagnostics: 'commonjs Diagnostics',
+      FaceGestures: 'commonjs FaceGestures',
+      FaceTracking: 'commonjs FaceTracking',
+      Fonts: 'commonjs Fonts',
+      LiveStreaming: 'commonjs LiveStreaming',
+      Locale: 'commonjs Locale',
+      Materials: 'commonjs Materials',
+      Networking: 'commonjs Networking',
+      Reactive: 'commonjs Reactive',
+      Scene: 'commonjs Scene',
+      Textures: 'commonjs Textures',
+      TouchGestures: 'commonjs TouchGestures',
+      Units: 'commonjs Units',
+    };
+
+    if (this.mode === 'development') {
+      // Tapping into the compilation process and running plugin logic async.
+      compiler.hooks.afterCompile.tapAsync('Tawang', (compilation, callback) => {
+        this.handler(compilation)
+          .then(() => {
+            callback();
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      });
+    }
   }
 
   /**
