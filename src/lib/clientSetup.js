@@ -50,7 +50,7 @@ var errorSender = new ErrorSender();
 var dev = {
   parse: function(line, column) {
     var stackTrace = new StackTrace();
-    stackTrace.add(line, column);
+    stackTrace.add(line - DATA_OBJECT.linesOffset, column);
 
     errorSender
       .parse(stackTrace)
@@ -75,6 +75,8 @@ var dev = {
       });
   },
 };
+
+Diagnostics.log('Use dev.parse(line number, column number) to get original error location.')
 
 /** A list of error locations. */
 var StackTrace = function() {
