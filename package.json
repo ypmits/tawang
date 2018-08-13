@@ -1,6 +1,6 @@
 {
   "name": "@mediamonks/tawang",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "src/index.js",
   "repository": "https://github.com/mediamonks/tawang.git",
   "description": "A webpack plugin for Facebook's AR Studio.",
