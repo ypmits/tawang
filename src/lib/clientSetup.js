@@ -18,6 +18,64 @@ function throttle(func) {
   }
 }
 
+ErrorSender = function() {
+  let id = DATA_OBJECT.id;
+
+  this.url = DATA_OBJECT.fullParseEndpointAddress.replace(/\[id\]/i, id);
+};
+
+ErrorSender.prototype.parse = function(stackTrace) {
+  // Assembling the option for the request
+  var options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    body: JSON.stringify({
+      errors: stackTrace.store,
+    }),
+  };
+
+  return Networking.fetch(this.url, options).then(function(result) {
+    // Log result: {"status":200}
+    if (result.status >= 200 && result.status < 300) {
+      return result.json();
+    }
+    throw new Error('HTTP status code ' + result.status);
+  });
+};
+
+var errorSender = new ErrorSender();
+
+var dev = {
+  parse: function(line, column) {
+    var stackTrace = new StackTrace();
+    stackTrace.add(line, column);
+
+    errorSender
+      .parse(stackTrace)
+      .then(function(json) {
+        var object = json[0];
+
+        var string = '';
+
+        string += object.line + ':' + object.column;
+
+        // If there was a method name in the original error, this is added to the output.
+        if (typeof object.name === 'string') {
+          string += ' ' + object.methodName;
+        }
+        string += ' in ' + object.source;
+        Diagnostics.log(string);
+      })
+      .catch(function(error) {
+        Diagnostics.log(error.message);
+        Diagnostics.log(error.name);
+        Diagnostics.log(error);
+      });
+  },
+};
+
 /** A list of error locations. */
 var StackTrace = function() {
   this.store = [];

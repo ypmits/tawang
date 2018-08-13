@@ -1,7 +1,4 @@
 throttle(function() {
-  let id = DATA_OBJECT.id;
-
-  const url = DATA_OBJECT.fullParseEndpointAddress.replace(/\[id\]/i, id);
 
   var errorMessage = '';
   // Getting locations from the stack trace.
@@ -21,25 +18,7 @@ throttle(function() {
     return;
   }
 
-  // Assembling the option for the request
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-    },
-    body: JSON.stringify({
-      errors: stackTrace.store,
-    }),
-  };
-
-  Networking.fetch(url, options)
-    .then(function(result) {
-      // Log result: {"status":200}
-      if (result.status >= 200 && result.status < 300) {
-        return result.json();
-      }
-      throw new Error('HTTP status code ' + result.status);
-    })
+  errorSender.parse(stackTrace)
     .then(function(json) {
       // Assembling the error message
       var string = '';
