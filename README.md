@@ -1,7 +1,7 @@
 # Tawang
 
 This plugin makes webpack compatible with [Facebook’s AR Studio](https://developers.facebook.com/products/ar-studio). With this plugin, it is possible to debug an AR Studio script using source maps.
-It uses an external API to parse the source map which webpack generates. You can create such an API using the [Tawang-API](#) Git repository.
+It uses an external API to parse the source map which webpack generates. You can create such an API using the [Tawang-API](https://github.com/timstruthoff/tawang-server) Git repository.
 
 ## Install
 ```javascript
@@ -14,6 +14,7 @@ yarn add -D @mediamonks/tawang
 ## Usage
 
 To use this plugin, you first have to require it. Secondly, you have to add an instance of it to the plugin array in the webpack.config.js. Finally, you have to pass the API endpoints to the options object.
+Alternatively, there is also a boilerplate project available [here](https://github.com/timstruthoff/tawang-starter), which you can just clone.
 
 **webpack.config.js**
 ```javascript
