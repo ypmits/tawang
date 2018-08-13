@@ -67,6 +67,7 @@ module.exports = class {
       Reactive: 'commonjs Reactive',
       Scene: 'commonjs Scene',
       Textures: 'commonjs Textures',
+      Time: 'commonjs Time',
       TouchGestures: 'commonjs TouchGestures',
       Units: 'commonjs Units',
     };
