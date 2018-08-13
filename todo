@@ -1,5 +1,7 @@
 - Add tests
 - Input validation
+- Improve server uptime
+- Encapsulate wrapper code namespace
 - Return errors as JSON
 - Add rate limiter to client error logging
 - Add rate limiter to api
