@@ -80,8 +80,8 @@ ErrorParser.prototype.getStackTraceFromJSError = function(error) {
   var lines = error.stack.split('\n');
   lines.forEach(function(line) {
     var parts = line.split(':');
-    var line = parts[2] - DATA_OBJECT.linesOffset;
-    var column = parts[3];
+    var line = parseInt(parts[2]) - DATA_OBJECT.linesOffset;
+    var column = parseInt(parts[3]);
 
     stackTrace.add(line, column);
   });
