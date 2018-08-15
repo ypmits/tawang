@@ -39,8 +39,15 @@ throttle(function() {
         string += ' in ' + currentLocation.source;
       }
 
+      // When webpack detects an error, it embeds a styled error
+      // message in the code. 
+      // Removing all color and styling from the string because it 
+      // isn't displayed properly in AR Studio
+      var stringWithoutColorCodes = string.replace(COLOR_CODE_REGEX, '');
+
+
       // Logging the error.
-      Diagnostics.log(string);
+      Diagnostics.log(stringWithoutColorCodes);
     })
     .catch(function(error) {
       Diagnostics.log('There was an issue with fetch operation: ' + error.message);

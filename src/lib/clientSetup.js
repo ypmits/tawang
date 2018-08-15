@@ -4,6 +4,9 @@ const Time = require('Time');
 
 let DATA_OBJECT = JSON.parse(DATA_JSON);
 
+// RegEx matches all ANSI color/style codes.
+const COLOR_CODE_REGEX = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g;
+
 let dropError = false;
 
 let throttleTime = 1000;
