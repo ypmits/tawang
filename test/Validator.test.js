@@ -47,5 +47,3 @@ describe('Validator', () => {
     });
   });
 });
-
-process.stdin.resume();

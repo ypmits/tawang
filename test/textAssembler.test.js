@@ -127,5 +127,3 @@ describe('textAssembler', () => {
     });
   });
 });
-
-process.stdin.resume();

@@ -36,5 +36,3 @@ describe('numberOfLines', () => {
     });
   });
 });
-
-process.stdin.resume();
