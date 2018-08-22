@@ -24,8 +24,11 @@ module.exports = (options = {}) => {
   }
 
   // Getting the wrapper code
-  let clientSetupCode = fs.readFileSync(path.join(__dirname, 'clientSetup.js'));
-  let clientErrorHandlingCode = fs.readFileSync(path.join(__dirname, 'clientErrorHandling.js'));
+  let clientSetupCode = fs.readFileSync(path.join(__dirname, 'clientSetup.js'), 'UTF-8');
+  let clientErrorHandlingCode = fs.readFileSync(
+    path.join(__dirname, 'clientErrorHandling.js'),
+    'UTF-8',
+  );
 
   // Assembling the data object which gets passed on to the client.
   let data = {
