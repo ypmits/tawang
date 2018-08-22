@@ -8,7 +8,21 @@ const numberOfLines = require('./numberOfLines');
  * @param {String} options.id The id of the source map on the server.
  * @param {String} options.fullParseEndpointAddress The full address of the parse GET endpoint on the API server.
  */
-module.exports = options => {
+module.exports = (options = {}) => {
+  if (typeof options !== 'object') {
+    throw new Error('No options object provided!');
+  }
+
+  if (typeof options.id !== 'string') {
+    throw new Error('No valid id provided! options.id must be a string.');
+  }
+
+  if (typeof options.fullParseEndpointAddress !== 'string') {
+    throw new Error(
+      'No valid fullParseEndpointAddress provided! options.fullParseEndpointAddress must be a string.',
+    );
+  }
+
   // Getting the wrapper code
   let clientSetupCode = fs.readFileSync(path.join(__dirname, 'clientSetup.js'));
   let clientErrorHandlingCode = fs.readFileSync(path.join(__dirname, 'clientErrorHandling.js'));
