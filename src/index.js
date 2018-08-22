@@ -22,11 +22,11 @@ module.exports = class {
     let validator = new Validator();
 
     if (typeof options !== 'object') {
-      throw 'Tawang: Please provide an options object!';
+      throw new Error('Tawang: Please provide an options object!');
     }
 
     if (typeof options.serverHost !== 'string') {
-      throw 'Tawang: Please provide a serverHost string in the options object!';
+      throw new Error('Tawang: Please provide a serverHost string in the options object!');
     }
 
     let sourceMapEndpoint = validator.sourceMapEndpoint(options.sourceMapEndpoint);
