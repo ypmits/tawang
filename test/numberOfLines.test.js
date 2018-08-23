@@ -2,7 +2,7 @@ const chai = require('chai');
 const { expect } = chai;
 
 describe('numberOfLines', () => {
-  const numberOflines = require('../src/lib/numberOflines');
+  const numberOflines = require('../src/lib/numberOfLines');
 
   describe('with a string of three lines', () => {
     const testString = 'test1\ntest2\ntest3';
