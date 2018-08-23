@@ -1,8 +1,9 @@
 const chai = require('chai');
+const path = require('path');
 const { expect } = chai;
 
 describe('numberOfLines', () => {
-  const numberOflines = require('../src/lib/numberOflines');
+  const numberOflines = require(path.join(__dirname, '../src/lib/numberOflines'));
 
   describe('with a string of three lines', () => {
     const testString = 'test1\ntest2\ntest3';
