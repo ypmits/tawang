@@ -2,14 +2,14 @@ const Diagnostics = require('Diagnostics');
 const Networking = require('Networking');
 const Time = require('Time');
 
-let DATA_OBJECT = JSON.parse(DATA_JSON);
+var DATA_OBJECT = JSON.parse(DATA_JSON);
 
 // RegEx matches all ANSI color/style codes.
 const COLOR_CODE_REGEX = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g;
 
-let dropError = false;
+var dropError = false;
 
-let throttleTime = 1000;
+var throttleTime = 1000;
 Time.setInterval(function() {
   dropError = false;
 }, throttleTime);
@@ -22,7 +22,7 @@ function throttle(func) {
 }
 
 ErrorSender = function() {
-  let id = DATA_OBJECT.id;
+  var id = DATA_OBJECT.id;
 
   this.url = DATA_OBJECT.fullParseEndpointAddress.replace(/\[id\]/i, id);
 };
@@ -196,7 +196,7 @@ ErrorParser.prototype.getStackTraceFromNativeError = function(error) {
   var stackLines = errorStackString.split('\n');
 
   // Parsing each line of the stack trace.
-  for (let i = 0; i < stackLines.length; i++) {
+  for (var i = 0; i < stackLines.length; i++) {
     var currentLine = stackLines[i];
 
     // Checking if current line is still par of the stack trace.
