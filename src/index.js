@@ -64,6 +64,7 @@ module.exports = class {
       Locale: 'commonjs Locale',
       Materials: 'commonjs Materials',
       Networking: 'commonjs Networking',
+      Patches: 'commonjs Patches',
       Reactive: 'commonjs Reactive',
       Scene: 'commonjs Scene',
       Textures: 'commonjs Textures',
