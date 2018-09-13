@@ -21,7 +21,7 @@ function throttle(func) {
   }
 }
 
-ErrorSender = function() {
+var ErrorSender = function() {
   var id = DATA_OBJECT.id;
 
   this.url = DATA_OBJECT.fullParseEndpointAddress.replace(/\[id\]/i, id);
